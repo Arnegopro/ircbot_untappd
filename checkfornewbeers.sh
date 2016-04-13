@@ -1,6 +1,8 @@
+#! /bin/bash
+sh get_profile.sh
 for i in $(cat namelist); do
     IFS=$'\n'
-    for j in $(cat $i | grep -Eo "([0-9]{2} [A-Za-z]{3} [0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2})"); do
+    for j in $(cat $i.profile | grep -Eo "([0-9]{2} [A-Za-z]{3} [0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2})"); do
 
         # adjust timezone
         now=$(date +%s)
