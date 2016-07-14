@@ -23,7 +23,8 @@ for i in $(cat namelist); do
             meta2=`( echo $meta | grep -oP '(?<=class="user">).*(?=/p)' )`
 	    meta3=`( echo $meta2 | sed -e 's/<[^>]*>//g' )`   
 	    meta4="("$i")"$meta3
-	    echo $meta4
+	    meta5=${meta4::-9}
+	    echo $meta5
 	fi;
     done;
 done;
