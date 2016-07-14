@@ -17,15 +17,13 @@ for i in $(cat namelist); do
 
         beer=$(date --date=$j +%s)
         if [[ $(($now - $beer)) -le 300 ]]; then
-            echo "new beerz for $i"
-	    let "beerslast5min += 1"
-	    echo "Beers = $beerslast5min"
-	    echo "time = $j"
 	    #Getting metadata from profile
 	    checkinID=`( cat $i.profile | grep $j |grep -Eo "([0-9]{9})" )`
 	    meta=`( cat $i.profile | grep -A 15 'id="checkin_'$checkinID )` 
-            meta2=`( echo $meta | grep -oP '(?<=class="user">).*(?=/p)' )`	    
-	    echo $meta2
+            meta2=`( echo $meta | grep -oP '(?<=class="user">).*(?=/p)' )`
+	    meta3=`( echo $meta2 | sed -e 's/<[^>]*>//g' )`   
+	    meta4="("$i")"$meta3
+	    echo $meta4
 	fi;
     done;
 done;
